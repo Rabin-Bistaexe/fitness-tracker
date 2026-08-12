@@ -5,7 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import LogWorkout from "./pages/LogWorkout";
 import History from "./pages/History";
 
-export default function App() {
+function App() {
   return (
     <BrowserRouter>
       <nav style={{ display: "flex", gap: "10px", padding: "10px" }}>
@@ -27,3 +27,4 @@ export default function App() {
     </BrowserRouter>
   );
 }
+export default App;

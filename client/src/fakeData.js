@@ -1,4 +1,23 @@
 export const fakeWorkouts = [
-  { id: 1, name: "Chest Day", rating: 5, notes: "Great workout!" },
-  { id: 2, name: "Leg Day", rating: 4, notes: "Squats felt heavy." }
+  {
+    id: 1,
+    name: "Chest Day",
+    date: "2026-08-10",
+    rating: 5,
+    notes: "Great workout!",
+    exercises: [
+      { name: "Bench Press", sets: 4, reps: 8 },
+      { name: "Incline Press", sets: 3, reps: 10 }
+    ]
+  },
+  {
+    id: 2,
+    name: "Leg Day",
+    date: "2026-08-08",
+    rating: 4,
+    notes: "Squats felt heavy.",
+    exercises: [
+      { name: "Squats", sets: 4, reps: 10 }
+    ]
+  }
 ];
