@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import LogWorkout from "./pages/LogWorkout";
 import History from "./pages/History";
-import { fakeWorkouts } from "./fakeData"; // Make sure path matches your setup
+import { fakeWorkouts } from "./fakeData";
 
 function App() {
-  // 1. Master workouts state lives here now!
-  const [workouts, setWorkouts] = useState(fakeWorkouts);
+  // 1. Load workouts from localStorage on first render (fallback to fakeWorkouts)
+  const [workouts, setWorkouts] = useState(() => {
+    const savedWorkouts = localStorage.getItem("my_workouts");
+    return savedWorkouts ? JSON.parse(savedWorkouts) : fakeWorkouts;
+  });
 
-  // 2. Function to add new workout to top of list
+  // 2. Save workouts to localStorage whenever the `workouts` state changes
+  useEffect(() => {
+    localStorage.setItem("my_workouts", JSON.stringify(workouts));
+  }, [workouts]);
+
   const handleAddWorkout = (newWorkout) => {
     setWorkouts([newWorkout, ...workouts]);
   };
@@ -29,12 +36,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        
-        {/* 3. Pass workouts state to Dashboard */}
         <Route path="/dashboard" element={<Dashboard workouts={workouts} />} />
         <Route path="/" element={<Dashboard workouts={workouts} />} />
-        
-        {/* 4. Pass handleAddWorkout function to LogWorkout */}
         <Route path="/log-workout" element={<LogWorkout onAddWorkout={handleAddWorkout} />} />
         <Route path="/history" element={<History workouts={workouts} />} />
       </Routes>

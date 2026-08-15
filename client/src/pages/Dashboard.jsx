@@ -1,4 +1,5 @@
-export default function Dashboard({ workouts = [] }) { // Accepts workouts from App.jsx
+export default function Dashboard({ workouts = [] }) {
+  // Accepts workouts from App.jsx
   return (
     <div style={{ padding: "20px", maxWidth: "900px", margin: "0 auto" }}>
       <div style={{ marginBottom: "25px", textAlign: "left" }}>
@@ -12,7 +13,14 @@ export default function Dashboard({ workouts = [] }) { // Accepts workouts from 
         Recent Workouts ({workouts.length})
       </h2>
 
-      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "flex-start" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "20px",
+          flexWrap: "wrap",
+          justifyContent: "flex-start",
+        }}
+      >
         {workouts.map((workout) => (
           <div
             key={workout.id}
@@ -23,10 +31,17 @@ export default function Dashboard({ workouts = [] }) { // Accepts workouts from 
               backgroundColor: "#ffffff",
               color: "#1a1a1a",
               textAlign: "left",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)"
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
             }}
           >
-            <h3 style={{ marginTop: 0, marginBottom: "10px", color: "#111827", fontSize: "20px" }}>
+            <h3
+              style={{
+                marginTop: 0,
+                marginBottom: "10px",
+                color: "#111827",
+                fontSize: "20px",
+              }}
+            >
               {workout.name}
             </h3>
 
@@ -46,7 +61,7 @@ export default function Dashboard({ workouts = [] }) { // Accepts workouts from 
                   color: "#374151",
                   backgroundColor: "#f3f4f6",
                   padding: "8px 10px",
-                  borderRadius: "6px"
+                  borderRadius: "6px",
                 }}
               >
                 "{workout.notes}"
@@ -55,13 +70,28 @@ export default function Dashboard({ workouts = [] }) { // Accepts workouts from 
 
             {workout.exercises && workout.exercises.length > 0 && (
               <>
-                <h4 style={{ marginBottom: "8px", marginTop: "16px", color: "#1f2937", fontSize: "15px" }}>
+                <h4
+                  style={{
+                    marginBottom: "8px",
+                    marginTop: "16px",
+                    color: "#1f2937",
+                    fontSize: "15px",
+                  }}
+                >
                   Exercises
                 </h4>
-                <ul style={{ paddingLeft: "20px", margin: 0, fontSize: "14px", color: "#374151" }}>
+                <ul
+                  style={{
+                    paddingLeft: "20px",
+                    margin: 0,
+                    fontSize: "14px",
+                    color: "#374151",
+                  }}
+                >
                   {workout.exercises.map((exercise, index) => (
                     <li key={index} style={{ marginBottom: "4px" }}>
-                      <strong>{exercise.name}</strong> ({exercise.sets} sets × {exercise.reps} reps)
+                      <strong>{exercise.name}</strong> ({exercise.sets} sets ×{" "}
+                      {exercise.reps} reps)
                     </li>
                   ))}
                 </ul>
